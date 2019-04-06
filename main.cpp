@@ -16,6 +16,8 @@ int main()
   unsigned int method;
   // The .CSV file which will contain the input data
   ifstream input_file;
+  // Pull from the data directory
+  string data_name = "data/";
   // The name of the input file
   string input_name;
   // The .CSV file which will contain the output data
@@ -63,6 +65,7 @@ int main()
   cout << "What is the name of the data file (in .csv format)?\n\n";
 
   cin >> input_name;
+  input_name = data_name.append(input_name);
   input_file.open(input_name);
 
   cout << '\n';
@@ -78,7 +81,10 @@ int main()
     input_file.close();
   }
   else
-    cout << "ERROR: Could not open " << input_name << '\n';
+  {
+    cout << "ERROR: Could not open " << input_name << ". Closing the program\n";
+    return 0;
+  }
   // Parse the .csv input file
   for (unsigned int i = 0; i < line_vector.size(); ++i)
 	{
